@@ -1,0 +1,17 @@
+<p>register works!</p>
+
+<div>
+  <form (submit)="register()">
+    <label for="userName">Username:</label>
+    <input type="text" id="userName" name="userName" [(ngModel)]="registerDto.userName" required>
+
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" [(ngModel)]="registerDto.fullName" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="registerDto.password" required>
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+

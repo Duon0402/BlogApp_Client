@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { ServiceProxies } from '../shared/proxies-sevices/proxies.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, RegisterComponent, HomeComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [ServiceProxies],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
