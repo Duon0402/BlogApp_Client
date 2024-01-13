@@ -4,6 +4,7 @@ import {
   ServiceProxies,
   UserDto,
 } from '../../shared/proxies-sevices/proxies.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -16,17 +17,16 @@ export class RegisterComponent {
     fullName: '',
     password: '',
   };
-  userDto: UserDto | null = null;
 
-  constructor(private _service: ServiceProxies) {}
+  constructor(private _service: ServiceProxies, private toastr: ToastrService) {}
 
   register() {
     this._service.register(this.registerDto).subscribe(
-      (data: UserDto) => {
-        this.userDto = data;
+      (user: UserDto) => {
+        this.toastr.success('Register successful', 'Success');
       },
       (error) => {
-        console.error('Error during registration:', error);
+        this.toastr.error('Register failed.', 'Error');
       }
     );
   }
