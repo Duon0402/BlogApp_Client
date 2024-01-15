@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, HomeComponent, NavComponent],
@@ -22,9 +23,11 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
   ],
-  providers: [ServiceProxies],
+  providers: [ServiceProxies, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 import { BlogPostDto } from './../../shared/proxies-sevices/proxies.service';
 import { Component, OnInit } from '@angular/core';
 import { ServiceProxies } from '../../shared/proxies-sevices/proxies.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,12 @@ import { ServiceProxies } from '../../shared/proxies-sevices/proxies.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  id: number = 2;
+  id: number = 1;
   blogPost: BlogPostDto = {
 
   }
 
-  constructor(private _service: ServiceProxies) {}
+  constructor(private _service: ServiceProxies, private toastr: ToastrService) {}
   ngOnInit(): void {
     this.getBlogPost();
   }
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
           this.blogPost = data;
         },
         (error) => {
-          console.error('Error fetching blog post:', error);
+          this.toastr.error(error);
         }
       );
   }
