@@ -2,7 +2,6 @@
   <div class="container">
       <a class="navbar-brand" routerLink="/" routerLinkActive="active">Blog App</a>
       <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown" *ngIf="(_service.currentUser$ | async) as user">
-        <a class="text-light m-lg-2">Welcome {{user.userName | titlecase}}</a>
         <button
           type="button"
           class="btn btn-primary me-2"
@@ -10,6 +9,7 @@
           ngbDropdownAnchor
           (focus)="myDrop.open()"
         >
+        <a class="text-light m-lg-2">Welcome {{user.userName | titlecase}}</a>
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual">
           <button ngbDropdownItem (click)="logout()">Logout</button>

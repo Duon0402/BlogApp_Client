@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ServiceProxies } from '../shared/proxies-sevices/proxies.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,9 +13,16 @@ import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './_guards/auth.guard';
-
+import { BlogpostComponent } from './blogpost/blogpost.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, HomeComponent, NavComponent],
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    HomeComponent,
+    NavComponent,
+    BlogpostComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,7 +34,15 @@ import { AuthGuard } from './_guards/auth.guard';
       positionClass: 'toast-bottom-right',
     }),
   ],
-  providers: [ServiceProxies, AuthGuard],
+  providers: [
+    ServiceProxies,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
