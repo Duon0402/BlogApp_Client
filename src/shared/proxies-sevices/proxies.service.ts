@@ -27,7 +27,7 @@ export class ServiceProxies {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     register(body: RegisterDto | undefined): Observable<UserDto> {
@@ -82,7 +82,7 @@ export class ServiceProxies {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     login(body: LoginDto | undefined): Observable<UserDto> {
@@ -137,9 +137,9 @@ export class ServiceProxies {
     }
 
     /**
-     * @param oderBy (optional)
-     * @param pageNumber (optional)
-     * @param pageSize (optional)
+     * @param oderBy (optional) 
+     * @param pageNumber (optional) 
+     * @param pageSize (optional) 
      * @return Success
      */
     getBlogPosts(oderBy: string | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<BlogPostDto[]> {
@@ -255,7 +255,7 @@ export class ServiceProxies {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     createBlogPost(body: CreateBlogPostDto | undefined): Observable<CreateBlogPostDto> {
@@ -299,6 +299,121 @@ export class ServiceProxies {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as CreateBlogPostDto;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    createComment(body: CreateCommentDto | undefined): Observable<CreateCommentDto> {
+        let url_ = this.baseUrl + "/api/Comment/CreateComment";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateComment(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateComment(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CreateCommentDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CreateCommentDto>;
+        }));
+    }
+
+    protected processCreateComment(response: HttpResponseBase): Observable<CreateCommentDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as CreateCommentDto;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param blogId (optional) 
+     * @param orderBy (optional) 
+     * @return Success
+     */
+    getCommentsByBlogPostId(blogId: number | undefined, orderBy: string | undefined): Observable<CommentDto[]> {
+        let url_ = this.baseUrl + "/api/Comment/GetCommentsByBlogPostId?";
+        if (blogId === null)
+            throw new Error("The parameter 'blogId' cannot be null.");
+        else if (blogId !== undefined)
+            url_ += "blogId=" + encodeURIComponent("" + blogId) + "&";
+        if (orderBy === null)
+            throw new Error("The parameter 'orderBy' cannot be null.");
+        else if (orderBy !== undefined)
+            url_ += "orderBy=" + encodeURIComponent("" + orderBy) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCommentsByBlogPostId(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCommentsByBlogPostId(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CommentDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CommentDto[]>;
+        }));
+    }
+
+    protected processGetCommentsByBlogPostId(response: HttpResponseBase): Observable<CommentDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as CommentDto[];
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -424,7 +539,6 @@ export interface BlogPost {
     userId?: string | undefined;
     user?: User;
     comments?: Comment[] | undefined;
-    likes?: Like[] | undefined;
 }
 
 export interface BlogPostDto {
@@ -444,6 +558,13 @@ export interface Comment {
     userId?: string | undefined;
 }
 
+export interface CommentDto {
+    content?: string | undefined;
+    createdAt?: Date;
+    blogPostId?: number;
+    userName?: string | undefined;
+}
+
 export interface CreateBlogPostDto {
     userID?: string | undefined;
     title?: string | undefined;
@@ -451,12 +572,11 @@ export interface CreateBlogPostDto {
     createdAt?: Date;
 }
 
-export interface Like {
-    id?: number;
+export interface CreateCommentDto {
+    content?: string | undefined;
+    createdAt?: Date;
     blogPostId?: number;
-    blogPost?: BlogPost;
     userId?: string | undefined;
-    user?: User;
 }
 
 export interface LoginDto {

@@ -1,5 +1,3 @@
-/* blog-list.component.css */
-
 .blog-post {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -18,6 +16,14 @@
   color: #555;
   font-size: 1.2rem;
   line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show up to 2 lines */
+  -webkit-box-orient: vertical;
 }
 
-/* Add more styles as needed */
+.read-more {
+  color: #007bff;
+  cursor: pointer;
+}

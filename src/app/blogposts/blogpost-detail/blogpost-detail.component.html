@@ -1,5 +1,5 @@
-<div *ngIf="blogPost">
+<div *ngIf="blogPost" class="blog-post-detail" #contentContainer>
   <h1>{{ blogPost.title }}</h1>
   <div class="content" [innerHTML]="blogPost.content"></div>
-  <!-- Add other details as needed -->
+  <app-commment></app-commment>
 </div>

@@ -1,0 +1,26 @@
+.blog-post-detail {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ddd; /* Thêm đường viền cho phần blog-post-detail */
+}
+
+h1 {
+  color: #333;
+  border-bottom: 1px solid #ddd; /* Thêm đường viền dưới cho tiêu đề */
+  padding-bottom: 10px; /* Khoảng cách giữa tiêu đề và nội dung */
+}
+
+.content {
+  margin-top: 20px;
+  line-height: 1.6;
+  border-bottom: 1px solid #ddd; /* Thêm đường viền dưới cho nội dung */
+  padding-bottom: 20px; /* Khoảng cách giữa nội dung và phần comment */
+}
+
+.app-comment {
+  border-top: 1px solid #ddd; /* Thêm đường viền trên cho phần comment */
+  padding-top: 20px; /* Khoảng cách giữa nội dung và phần comment */
+}

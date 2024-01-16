@@ -1,0 +1,17 @@
+<div class="comment-container">
+  <div class="comment-form">
+    <textarea [(ngModel)]="commentDto.content" placeholder="Write a comment..."></textarea>
+    <button (click)="comment()">Comment</button>
+  </div>
+
+  <div class="comment-list">
+    <h3>Comments</h3>
+    <div *ngIf="comments.length === 0" class="no-comment">No comments yet.</div>
+    <div *ngFor="let comment of comments" class="comment-item">
+      <p>{{ comment.content }}</p>
+      <small class="comment-info">
+        Posted by <span class="username">{{ comment.userName }}</span> on {{ comment.createdAt | date: 'short' }}
+      </small>
+    </div>
+  </div>
+</div>

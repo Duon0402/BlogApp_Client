@@ -1,5 +1,5 @@
 <div *ngFor="let post of blogPosts" class="blog-post" [routerLink]="['/blogpost', post.id]">
   <h2>{{ post.title }}</h2>
   <div class="content" [innerHTML]="post.content"></div>
-  <!-- Add other details as needed -->
+  <p class="read-more">Read more</p>
 </div>

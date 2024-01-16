@@ -18,6 +18,7 @@ import { BlogpostCreateComponent } from './blogposts/blogpost-create/blogpost-cr
 import { BlogpostListComponent } from './blogposts/blogpost-list/blogpost-list.component';
 import { QuillModule } from 'ngx-quill';
 import { BlogpostDetailComponent } from './blogposts/blogpost-detail/blogpost-detail.component';
+import { CommmentComponent } from './commment/commment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { BlogpostDetailComponent } from './blogposts/blogpost-detail/blogpost-de
     BlogpostCreateComponent,
     BlogpostListComponent,
     BlogpostDetailComponent,
+    CommmentComponent,
   ],
   imports: [
     BrowserModule,

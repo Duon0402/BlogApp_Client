@@ -1,0 +1,35 @@
+/* commment.component.css */
+.comment-container {
+  margin-top: 20px;
+}
+
+.comment-form {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 50px;
+}
+
+.comment-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-info {
+  color: #888;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.no-comment {
+  color: #888;
+  margin-top: 10px;
+}

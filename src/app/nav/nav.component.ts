@@ -1,11 +1,5 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {
-  LoginDto,
-  ServiceProxies,
-  UserDto,
-} from '../../shared/proxies-sevices/proxies.service';
-import { ToastrService } from 'ngx-toastr';
+import { LoginDto } from '../../shared/proxies-sevices/proxies.service';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -19,7 +13,9 @@ export class NavComponent implements OnInit {
     password: '',
   };
 
-  constructor(public _service: AccountService, private toastr: ToastrService, private router: Router) {}
+  constructor(
+    public _service: AccountService,
+  ) {}
   ngOnInit(): void {}
 
   login() {
@@ -28,5 +24,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     this._service.logout();
+    this.loginData.password = '';
+    this.loginData.userName = '';
   }
 }
