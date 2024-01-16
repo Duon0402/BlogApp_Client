@@ -1,4 +1,3 @@
-/* commment.component.css */
 .comment-container {
   margin-top: 20px;
 }
@@ -13,6 +12,12 @@
   width: 100%;
   resize: vertical;
   min-height: 50px;
+}
+
+.comment-list {
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .comment-item {
@@ -32,4 +37,20 @@
 .no-comment {
   color: #888;
   margin-top: 10px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.order-by {
+  display: flex;
+  align-items: center;
+}
+
+.order-by label {
+  margin-right: 10px;
 }

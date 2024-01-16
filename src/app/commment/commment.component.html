@@ -1,11 +1,19 @@
+<!-- commment.component.html -->
 <div class="comment-container">
   <div class="comment-form">
     <textarea [(ngModel)]="commentDto.content" placeholder="Write a comment..."></textarea>
     <button (click)="comment()">Comment</button>
   </div>
-
-  <div class="comment-list">
+  <div class="comment-header">
     <h3>Comments</h3>
+    <div class="order-by">
+      <select id="orderBy" [(ngModel)]="orderBy" (change)="getListComment()">
+        <option value="new">Newest First</option>
+        <option value="old">Oldest First</option>
+      </select>
+    </div>
+  </div>
+  <div class="comment-list">
     <div *ngIf="comments.length === 0" class="no-comment">No comments yet.</div>
     <div *ngFor="let comment of comments" class="comment-item">
       <p>{{ comment.content }}</p>
