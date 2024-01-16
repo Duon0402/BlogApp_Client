@@ -2,7 +2,7 @@
 <div class="comment-container">
   <div class="comment-form">
     <textarea [(ngModel)]="commentDto.content" placeholder="Write a comment..."></textarea>
-    <button (click)="comment()">Comment</button>
+    <button (click)="comment()" [disabled]="!commentDto.content">Comment</button>
   </div>
   <div class="comment-header">
     <h3>Comments</h3>

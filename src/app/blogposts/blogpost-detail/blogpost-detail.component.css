@@ -18,6 +18,8 @@ h1 {
   line-height: 1.6;
   border-bottom: 1px solid #ddd; /* Thêm đường viền dưới cho nội dung */
   padding-bottom: 20px; /* Khoảng cách giữa nội dung và phần comment */
+  max-height: 400px;
+  overflow-y: auto; /* Add a scrollbar if content exceeds the max height */
 }
 
 .app-comment {
