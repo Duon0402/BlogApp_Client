@@ -258,7 +258,7 @@ export class ServiceProxies {
      * @param body (optional)
      * @return Success
      */
-    createBlogPost(body: BlogPostDto | undefined): Observable<BlogPost> {
+    createBlogPost(body: CreateBlogPostDto | undefined): Observable<CreateBlogPostDto> {
         let url_ = this.baseUrl + "/api/BlogPost/CreateBlogPost";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -281,14 +281,14 @@ export class ServiceProxies {
                 try {
                     return this.processCreateBlogPost(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<BlogPost>;
+                    return _observableThrow(e) as any as Observable<CreateBlogPostDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<BlogPost>;
+                return _observableThrow(response_) as any as Observable<CreateBlogPostDto>;
         }));
     }
 
-    protected processCreateBlogPost(response: HttpResponseBase): Observable<BlogPost> {
+    protected processCreateBlogPost(response: HttpResponseBase): Observable<CreateBlogPostDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -298,7 +298,7 @@ export class ServiceProxies {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as BlogPost;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as CreateBlogPostDto;
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -428,6 +428,7 @@ export interface BlogPost {
 }
 
 export interface BlogPostDto {
+    id?: number;
     userName?: string | undefined;
     title?: string | undefined;
     content?: string | undefined;
@@ -441,6 +442,13 @@ export interface Comment {
     blogPostId?: number;
     blogPost?: BlogPost;
     userId?: string | undefined;
+}
+
+export interface CreateBlogPostDto {
+    userID?: string | undefined;
+    title?: string | undefined;
+    content?: string | undefined;
+    createdAt?: Date;
 }
 
 export interface Like {
@@ -483,6 +491,7 @@ export interface User {
 }
 
 export interface UserDto {
+    userID?: string | undefined;
     userName?: string | undefined;
     fullName?: string | undefined;
     token?: string | undefined;

@@ -13,15 +13,20 @@ import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './_guards/auth.guard';
-import { BlogpostComponent } from './blogpost/blogpost.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { BlogpostCreateComponent } from './blogposts/blogpost-create/blogpost-create.component';
+import { BlogpostListComponent } from './blogposts/blogpost-list/blogpost-list.component';
+import { QuillModule } from 'ngx-quill';
+import { BlogpostDetailComponent } from './blogposts/blogpost-detail/blogpost-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     HomeComponent,
     NavComponent,
-    BlogpostComponent,
+    BlogpostCreateComponent,
+    BlogpostListComponent,
+    BlogpostDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
+    QuillModule
   ],
   providers: [
     ServiceProxies,

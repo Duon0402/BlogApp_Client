@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
   LoginDto,
@@ -18,7 +19,7 @@ export class NavComponent implements OnInit {
     password: '',
   };
 
-  constructor(public _service: AccountService, private toastr: ToastrService) {}
+  constructor(public _service: AccountService, private toastr: ToastrService, private router: Router) {}
   ngOnInit(): void {}
 
   login() {

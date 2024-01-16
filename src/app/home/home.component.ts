@@ -9,24 +9,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  id: number = 1;
-  blogPost: BlogPostDto = {
-
-  }
-
-  constructor(private _service: ServiceProxies, private toastr: ToastrService) {}
-  ngOnInit(): void {
-    this.getBlogPost();
-  }
-
-  getBlogPost() {
-      this._service.getBlogPost(this.id).subscribe(
-        (data: BlogPostDto) => {
-          this.blogPost = data;
-        },
-        (error) => {
-          this.toastr.error(error);
-        }
-      );
-  }
+  constructor(
+    private _service: ServiceProxies,
+    private toastr: ToastrService
+  ) {}
+  ngOnInit(): void {}
 }

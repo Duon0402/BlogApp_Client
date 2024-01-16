@@ -1,0 +1,27 @@
+.container {
+  max-width: 80%; /* Adjust the max-width as needed */
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: auto;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+quill-editor {
+  height: 300px; /* Set an initial height for the Quill editor */
+  max-height: 600px; /* Set a max height for the Quill editor */
+  overflow-y: auto; /* Add a scrollbar if content exceeds the max height */
+}
+
+.modal-footer {
+  text-align: right;
+}
