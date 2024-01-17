@@ -1,5 +1,20 @@
-<div *ngFor="let post of blogPosts" class="blog-post" [routerLink]="['/blogpost', post.id]">
+<div
+  *ngFor="let post of blogPosts"
+  class="blog-post"
+  [routerLink]="['/blogpost', post.id]"
+>
   <h2>{{ post.title }}</h2>
   <div class="content" [innerHTML]="post.content"></div>
   <p class="read-more">Read more</p>
+</div>
+
+<div class="d-flex justify-content-center"
+  *ngIf="pagination && pagination.totalPages > 1">
+  <ngb-pagination
+    [collectionSize]="pagination.totalItems"
+    [(page)]="pagination.currentPage"
+    [pageSize]="pagination.itemsPerPage"
+    (pageChange)="pageChanged($event)"
+    aria-label="Default pagination"
+  ></ngb-pagination>
 </div>

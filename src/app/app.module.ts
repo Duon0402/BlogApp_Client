@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ServiceProxies } from '../shared/proxies-sevices/proxies.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -19,6 +19,7 @@ import { BlogpostListComponent } from './blogposts/blogpost-list/blogpost-list.c
 import { QuillModule } from 'ngx-quill';
 import { BlogpostDetailComponent } from './blogposts/blogpost-detail/blogpost-detail.component';
 import { CommmentComponent } from './commment/commment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { CommmentComponent } from './commment/commment.component';
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
-    QuillModule
+    QuillModule,
+    NgbPaginationModule
   ],
   providers: [
     ServiceProxies,
