@@ -1,3 +1,4 @@
+import { AccountService } from './../_services/account.service';
 import { Component } from '@angular/core';
 import {
   RegisterDto,
@@ -18,14 +19,21 @@ export class RegisterComponent {
     fullName: '',
     password: '',
   };
+  rePassword!: string;
 
-  constructor(private _service: ServiceProxies, private toastr: ToastrService, private router: Router) {}
+  constructor(
+    private _service: ServiceProxies,
+    private toastr: ToastrService,
+    private router: Router,
+    private accountService: AccountService
+  ) {}
 
   register() {
     this._service.register(this.registerDto).subscribe(
       (user: UserDto) => {
         this.toastr.success('Register successful', 'Success');
-        this.router.navigateByUrl('');
+        this.accountService.setCurrentUser(user);
+        this.router.navigateByUrl('/list');
       },
       (error) => {
         this.toastr.error('Register failed.', 'Error');

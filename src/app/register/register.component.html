@@ -1,9 +1,5 @@
-<p>register works!</p>
-
-<a routerLink="">Home</a>
-
-<div>
-  <form (submit)="register()">
+<div class="registration-container">
+  <form (submit)="register()" class="registration-form">
     <label for="userName">Username:</label>
     <input type="text" id="userName" name="userName" [(ngModel)]="registerDto.userName" required>
 
@@ -16,4 +12,3 @@
     <button type="submit">Register</button>
   </form>
 </div>
-

@@ -539,6 +539,7 @@ export interface BlogPost {
     userId?: string | undefined;
     user?: User;
     comments?: Comment[] | undefined;
+    likes?: Like[] | undefined;
 }
 
 export interface BlogPostDto {
@@ -577,6 +578,14 @@ export interface CreateCommentDto {
     createdAt?: Date;
     blogPostId?: number;
     userId?: string | undefined;
+}
+
+export interface Like {
+    id?: number;
+    blogPostId?: number;
+    blogPost?: BlogPost;
+    userId?: string | undefined;
+    user?: User;
 }
 
 export interface LoginDto {
